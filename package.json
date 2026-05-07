@@ -1,0 +1,13 @@
+{
+  "name": "kariso-furniture",
+  "version": "1.0.0",
+  "description": "Landing page Kariso Furniture",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/style.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.6",
+    "tailwindcss": "^4.1.6"
+  }
+}
