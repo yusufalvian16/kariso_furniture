@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Kariso Furniture – Kitchen Set &amp; Desain Interior Kustom Yogyakarta</title>
 <meta name="description" content="Kariso Furniture menyediakan kitchen set kustom, desain interior dan eksterior berkualitas dengan harga terjangkau di Yogyakarta, Sleman, Bantul, dan sekitarnya."/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Kariso Furniture","address":{"@type":"PostalAddress","streetAddress":"Jl. Kebon Agung No.354, Tlogoadi","addressLocality":"Mlati, Sleman","addressRegion":"DI Yogyakarta","postalCode":"55286","addressCountry":"ID"},"telephone":"+6281334478963","openingHours":"Mo-Su 08:00-17:00"}</script>
@@ -11,7 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="dist/style.css"/>
 <style>
-body{font-family:'Poppins',sans-serif;color:#2D2D2D;background:#FAF7F2}
+html{background:#FAF7F2;scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:#2D2D2D;background:#FAF7F2;overflow-x:hidden;width:100%}
 .fade-in{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .fade-in.visible{opacity:1;transform:translateY(0)}
 .hero-bg{background:linear-gradient(135deg,rgba(107,66,38,.88),rgba(139,94,60,.72)),url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80') center/cover no-repeat}
@@ -20,6 +21,7 @@ body{font-family:'Poppins',sans-serif;color:#2D2D2D;background:#FAF7F2}
 .portfolio-item .overlay{opacity:0;transition:opacity .3s ease}
 .portfolio-item:hover .overlay{opacity:1}
 #filterBtns button.active{background:#8B5E3C;color:#fff}
+#floatingWA.hide-wa{opacity:0;pointer-events:none;transform:translateY(20px)}
 </style>
 </head>
 <body class="antialiased">
@@ -63,7 +65,7 @@ body{font-family:'Poppins',sans-serif;color:#2D2D2D;background:#FAF7F2}
 </nav>
 
 <!-- SEKSI 1: HERO -->
-<section id="beranda" class="hero-bg min-h-screen flex items-center pt-16">
+<section id="beranda" class="hero-bg min-h-[100dvh] flex items-center pt-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28">
     <div class="max-w-2xl">
       <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-5 border border-white/30 fade-in">✦ Melayani Yogyakarta &amp; Sekitarnya</span>
@@ -571,7 +573,7 @@ body{font-family:'Poppins',sans-serif;color:#2D2D2D;background:#FAF7F2}
   </div>
 </section>
 
-<footer class="py-5 text-center text-sm border-t" style="background:#1A1A1A;color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.08)">
+<footer class="py-5 text-center text-sm border-t" style="background:#1A1A1A;color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.08);padding-bottom:calc(1.25rem + env(safe-area-inset-bottom))">
   <p>© 2025 Kariso Furniture. Semua hak dilindungi. | Jl. Kebon Agung No.354, Tlogoadi, Mlati, Sleman, DIY</p>
 </footer>
 
@@ -610,6 +612,16 @@ function filterPortfolio(cat,btn){
   btn.classList.add('active');btn.style.background='#8B5E3C';btn.style.color='#fff';btn.style.borderColor='#8B5E3C';
   document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(function(item){item.style.display=(cat==='all'||item.dataset.cat===cat)?'block':'none';});
 }
+// Hide WA button on footer
+var waBtn = document.getElementById('floatingWA');
+var footer = document.querySelector('footer');
+var footerObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) waBtn.classList.add('hide-wa');
+    else waBtn.classList.remove('hide-wa');
+  });
+},{threshold:0.1});
+if(footer) footerObs.observe(footer);
 </script>
 </body>
 </html>
